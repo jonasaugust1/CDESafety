@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.PropriedadeDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarPropriedade([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarPropriedade()
         {
-            List<ReadPropriedadeDto> readDto = _propriedadeService.RecuperarPropriedade(nomeDoFilme, estado);
+            List<ReadPropriedadeDto> readDto = _propriedadeService.RecuperarPropriedade();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarPropriedadePorId(int id)
         {
-            ReadPropriedadeDto readDto = _propriedadeService.RecuperarCinemaPorId(id);
+            ReadPropriedadeDto readDto = _propriedadeService.RecuperarPropriedadePorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPropriedade(int id)
         {
-            Result result = _propriedadeService.DeletaCinema(id);
+            Result result = _propriedadeService.DeletaPropriedade(id);
 
             if (result == null) return NotFound();
 

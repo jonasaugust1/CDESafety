@@ -62,5 +62,6 @@ namespace CDESafety.Data
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<RelatorioDeServico> RelatorioDeServicos { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Propriedade> Propriedades { get; set; }
     }
 }

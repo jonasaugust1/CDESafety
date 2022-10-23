@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.UserDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarUser([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarUser()
         {
-            List<ReadUserDto> readDto = _userService.RecuperarUser(nomeDoFilme, estado);
+            List<ReadUserDto> readDto = _userService.RecuperarUser();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarUserPorId(int id)
         {
-            ReadUserDto readDto = _userService.RecuperarCinemaPorId(id);
+            ReadUserDto readDto = _userService.RecuperarUserPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -46,7 +47,7 @@ namespace CDESafety.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizaUser(int id, [FromBody] UpdateUserDto updateDto)
         {
-            Result result = _userService.AtualizaCinema(id, updateDto);
+            Result result = _userService.AtualizaUser(id, updateDto);
 
             if (result.IsFailed) return NotFound();
 
@@ -56,7 +57,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaUser(int id)
         {
-            Result result = _userService.DeletaCinema(id);
+            Result result = _userService.DeletaUser(id);
 
             if (result == null) return NotFound();
 

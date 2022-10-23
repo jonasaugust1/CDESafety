@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.PilotoDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarPiloto([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarPiloto()
         {
-            List<ReadPilotoDto> readDto = _pilotoService.RecuperarPiloto(nomeDoFilme, estado);
+            List<ReadPilotoDto> readDto = _pilotoService.RecuperarPiloto();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarPilotoPorId(int id)
         {
-            ReadPilotoDto readDto = _pilotoService.RecuperarCinemaPorId(id);
+            ReadPilotoDto readDto = _pilotoService.RecuperarPilotoPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -46,7 +47,7 @@ namespace CDESafety.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizaPiloto(int id, [FromBody] UpdatePilotoDto updateDto)
         {
-            Result result = _pilotoService.AtualizaCinema(id, updateDto);
+            Result result = _pilotoService.AtualizaPiloto(id, updateDto);
 
             if (result.IsFailed) return NotFound();
 
@@ -57,7 +58,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPiloto(int id)
         {
-            Result result = _pilotoService.DeletaCinema(id);
+            Result result = _pilotoService.DeletaPiloto(id);
 
             if (result == null) return NotFound();
 

@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadAeronaveDto>(aeronave);
         }
 
-        public List<ReadAeronaveDto> RecuperarAeronaves()
+        public List<ReadAeronaveDto> RecuperarAeronave()
         {
             List<Aeronave> aeronaves = _context.Aeronaves.ToList();
 

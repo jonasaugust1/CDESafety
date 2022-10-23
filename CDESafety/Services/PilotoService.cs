@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadPilotoDto>(piloto);
         }
 
-        public List<ReadPilotoDto> RecuperarPilotos()
+        public List<ReadPilotoDto> RecuperarPiloto()
         {
             List<Piloto> pilotos = _context.Pilotos.ToList();
 
@@ -49,6 +49,19 @@ namespace CDESafety.Services
             }
 
             return null;
+        }
+
+        public Result AtualizaPiloto(int id, UpdatePilotoDto updateDto)
+        {
+            Piloto piloto = _context.Pilotos.FirstOrDefault(piloto => piloto.Id == id);
+
+            if (piloto == null) return Result.Fail("Endereço não encontrado");
+
+            _mapper.Map(updateDto, piloto);
+
+            _context.SaveChanges();
+
+            return Result.Ok();
         }
 
         public Result DeletaPiloto(int id)

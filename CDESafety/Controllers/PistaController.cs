@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.PistaDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarPista([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarPista()
         {
-            List<ReadPistaDto> readDto = _pistaService.RecuperarPista(nomeDoFilme, estado);
+            List<ReadPistaDto> readDto = _pistaService.RecuperarPista();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarPistaPorId(int id)
         {
-            ReadPistaDto readDto = _pistaService.RecuperarCinemaPorId(id);
+            ReadPistaDto readDto = _pistaService.RecuperarPistaPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaPista(int id)
         {
-            Result result = _pistaService.DeletaCinema(id);
+            Result result = _pistaService.DeletaPista(id);
 
             if (result == null) return NotFound();
 

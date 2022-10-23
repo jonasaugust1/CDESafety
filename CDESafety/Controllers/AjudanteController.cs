@@ -25,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarAjudante([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarAjudante()
         {
-            List<ReadAjudanteDto> readDto = _ajudanteService.RecuperarAjudante(nomeDoFilme, estado);
+            List<ReadAjudanteDto> readDto = _ajudanteService.RecuperarAjudante();
 
             if (readDto == null) return NotFound();
 
@@ -37,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarAjudantePorId(int id)
         {
-            ReadAjudanteDto readDto = _ajudanteService.RecuperarCinemaPorId(id);
+            ReadAjudanteDto readDto = _ajudanteService.RecuperarAjudantePorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -48,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaAjudante(int id)
         {
-            Result result = _ajudanteService.DeletaCinema(id);
+            Result result = _ajudanteService.DeletaAjudante(id);
 
             if (result == null) return NotFound();
 

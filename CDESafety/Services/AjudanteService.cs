@@ -19,13 +19,13 @@ namespace CDESafety.Services
 
         public ReadAjudanteDto AdicionaAjudante(CreateAjudanteDto clienteDto)
         {
-            Ajudante cliente = _mapper.Map<Ajudante>(clienteDto);
-            _context.Ajudantes.Add(cliente);
+            Ajudante ajudante = _mapper.Map<Ajudante>(clienteDto);
+            _context.Ajudantes.Add(ajudante);
             _context.SaveChanges();
             return _mapper.Map<ReadAjudanteDto>(ajudante);
         }
 
-        public List<ReadAjudanteDto> RecuperarAjudantes()
+        public List<ReadAjudanteDto> RecuperarAjudante()
         {
             List<Ajudante> ajudantes = _context.Ajudantes.ToList();
 

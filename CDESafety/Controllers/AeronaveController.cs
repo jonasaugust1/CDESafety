@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.AeronaveDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarAeronave([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarAeronave()
         {
-            List<ReadAeronaveDto> readDto = _aeronaveService.RecuperarAeronave(nomeDoFilme, estado);
+            List<ReadAeronaveDto> readDto = _aeronaveService.RecuperarAeronave();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarAeronavePorId(int id)
         {
-            ReadAeronaveDto readDto = _aeronaveService.RecuperarCinemaPorId(id);
+            ReadAeronaveDto readDto = _aeronaveService.RecuperarAeronavePorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaAeronave(int id)
         {
-            Result result = _aeronaveService.DeletaCinema(id);
+            Result result = _aeronaveService.DeletaAeronave(id);
 
             if (result == null) return NotFound();
 

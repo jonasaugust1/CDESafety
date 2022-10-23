@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.RelatorioDeServicoDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarRelatorioDeServico([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarRelatorioDeServico()
         {
-            List<ReadRelatorioDeServicoDto> readDto = _relatorioDeServicoService.RecuperarRelatorioDeServico(nomeDoFilme, estado);
+            List<ReadRelatorioDeServicoDto> readDto = _relatorioDeServicoService.RecuperarRelatorioDeServico();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarRelatorioDeServicoPorId(int id)
         {
-            ReadRelatorioDeServicoDto readDto = _relatorioDeServicoService.RecuperarCinemaPorId(id);
+            ReadRelatorioDeServicoDto readDto = _relatorioDeServicoService.RecuperarRelatorioDeServicoPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -46,7 +47,7 @@ namespace CDESafety.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizaRelatorioDeServico(int id, [FromBody] UpdateRelatorioDeServicoDto updateDto)
         {
-            Result result = _relatorioDeServicoService.AtualizaCinema(id, updateDto);
+            Result result = _relatorioDeServicoService.AtualizaRelatorioDeServico(id, updateDto);
 
             if (result.IsFailed) return NotFound();
 
@@ -57,7 +58,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaRelatorioDeServico(int id)
         {
-            Result result = _relatorioDeServicoService.DeletaCinema(id);
+            Result result = _relatorioDeServicoService.DeletaRelatorioDeServico(id);
 
             if (result == null) return NotFound();
 

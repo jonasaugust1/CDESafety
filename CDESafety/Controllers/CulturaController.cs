@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.CulturaDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarCultura([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarCultura()
         {
-            List<ReadCulturaDto> readDto = _culturaService.RecuperarCultura(nomeDoFilme, estado);
+            List<ReadCulturaDto> readDto = _culturaService.RecuperarCultura();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarCulturaPorId(int id)
         {
-            ReadCulturaDto readDto = _culturaService.RecuperarCinemaPorId(id);
+            ReadCulturaDto readDto = _culturaService.RecuperarCulturaPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaCultura(int id)
         {
-            Result result = _culturaService.DeletaCinema(id);
+            Result result = _culturaService.DeletaCultura(id);
 
             if (result == null) return NotFound();
 

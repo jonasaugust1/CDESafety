@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadCulturaDto>(cultura);
         }
 
-        public List<ReadCulturaDto> RecuperarCulturas()
+        public List<ReadCulturaDto> RecuperarCultura()
         {
             List<Cultura> culturas = _context.Culturas.ToList();
 

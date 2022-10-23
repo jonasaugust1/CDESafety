@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadEquipamentoDto>(equipamento);
         }
 
-        public List<ReadEquipamentoDto> RecuperarEquipamentos()
+        public List<ReadEquipamentoDto> RecuperarEquipamento()
         {
             List<Equipamento> equipamentos = _context.Equipamentos.ToList();
 

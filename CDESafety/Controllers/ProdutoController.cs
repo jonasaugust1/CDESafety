@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.ProdutoDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarProduto([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarProduto()
         {
-            List<ReadProdutoDto> readDto = _produtoService.RecuperarProduto(nomeDoFilme, estado);
+            List<ReadProdutoDto> readDto = _produtoService.RecuperarProduto();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarProdutoPorId(int id)
         {
-            ReadProdutoDto readDto = _produtoService.RecuperarCinemaPorId(id);
+            ReadProdutoDto readDto = _produtoService.RecuperarProdutoPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaProduto(int id)
         {
-            Result result = _produtoService.DeletaCinema(id);
+            Result result = _produtoService.DeletaProduto(id);
 
             if (result == null) return NotFound();
 

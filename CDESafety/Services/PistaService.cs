@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadPistaDto>(pista);
         }
 
-        public List<ReadPistaDto> RecuperarPistas()
+        public List<ReadPistaDto> RecuperarPista()
         {
             List<Pista> pistas = _context.Pistas.ToList();
 

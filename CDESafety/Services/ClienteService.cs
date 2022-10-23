@@ -25,7 +25,7 @@ namespace CDESafety.Services
             return _mapper.Map<ReadClienteDto>(cliente);
         }
 
-        public List<ReadClienteDto> RecuperarClientes()
+        public List<ReadClienteDto> RecuperarCliente()
         {
             List<Cliente> clientes = _context.Clientes.ToList();
 

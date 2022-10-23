@@ -1,4 +1,5 @@
 ﻿using CDESafety.Data.Dtos.EquipamentoDto;
+using CDESafety.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,9 @@ namespace CDESafety.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarEquipamento([FromQuery] string? nomeDoFilme, string? estado)
+        public IActionResult RecuperarEquipamento()
         {
-            List<ReadEquipamentoDto> readDto = _equipamentoService.RecuperarEquipamento(nomeDoFilme, estado);
+            List<ReadEquipamentoDto> readDto = _equipamentoService.RecuperarEquipamento();
 
             if (readDto == null) return NotFound();
 
@@ -36,7 +37,7 @@ namespace CDESafety.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarEquipamentoPorId(int id)
         {
-            ReadEquipamentoDto readDto = _equipamentoService.RecuperarCinemaPorId(id);
+            ReadEquipamentoDto readDto = _equipamentoService.RecuperarEquipamentoPorId(id);
 
             if (readDto == null) return NotFound();
 
@@ -47,7 +48,7 @@ namespace CDESafety.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaEquipamento(int id)
         {
-            Result result = _equipamentoService.DeletaCinema(id);
+            Result result = _equipamentoService.DeletaEquipamento(id);
 
             if (result == null) return NotFound();
 
