@@ -2,4 +2,4 @@
 ZTaurus Project API
 
 
-![alt text](CDESafety/Assets/SwaggerCDESafety.png)
+![alt text](CDESafety/Asssets/SwaggerCDESafety.png)
